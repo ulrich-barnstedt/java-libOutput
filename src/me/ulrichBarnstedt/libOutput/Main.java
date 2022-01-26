@@ -6,8 +6,6 @@ import me.ulrichBarnstedt.libOutput.color.TrueColor;
 import me.ulrichBarnstedt.libOutput.render.*;
 import me.ulrichBarnstedt.libOutput.terminal.Cursor;
 
-import java.util.concurrent.TimeUnit;
-
 public class Main {
     public static void main (String[] args) throws InterruptedException {
         Screen test1 = new Screen(
@@ -116,20 +114,9 @@ public class Main {
                 )
         );
 
-        Screen test2 = new Screen(
-            new Container(true, true)
-        );
-
         ScreenManager scrmg = new ScreenManager()
             .addPage("test1", test1)
-            .addPage("test2", test2)
             .open("test2");
-
-        TimeUnit.SECONDS.sleep(3);
-
-        scrmg.open("test1");
-
-        TimeUnit.SECONDS.sleep(5);
 
         Cursor.toPos(10, 2000).p();
     }
