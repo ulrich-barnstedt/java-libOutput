@@ -6,8 +6,10 @@ import me.ulrichBarnstedt.libOutput.color.TrueColor;
 import me.ulrichBarnstedt.libOutput.render.*;
 import me.ulrichBarnstedt.libOutput.terminal.Cursor;
 
+import java.util.concurrent.TimeUnit;
+
 public class Main {
-    public static void main (String[] args) {
+    public static void main (String[] args) throws InterruptedException {
         Screen test1 = new Screen(
             new Container(true, true)
                 .setPadding(3, 2)
@@ -63,7 +65,7 @@ public class Main {
                 .addElement(
                     new Container(true, true)
                         .addElement(
-                            new Text("Titles? Yep.)")
+                            new Text("Titles? Yep.")
                         )
                         .setTitle("Fancy")
                         .setPadding(2, 1)
@@ -114,20 +116,21 @@ public class Main {
                 )
         );
 
+        Screen test2 = new Screen(
+            new Container(true, true)
+        );
+
         ScreenManager scrmg = new ScreenManager()
             .addPage("test1", test1)
-            .open("test1");
+            .addPage("test2", test2)
+            .open("test2");
+
+        TimeUnit.SECONDS.sleep(3);
+
+        scrmg.open("test1");
+
+        TimeUnit.SECONDS.sleep(5);
 
         Cursor.toPos(10, 2000).p();
     }
 }
-
-//TODO:
-// - Screen manager
-
-// - Check hierarchy for excess calls / optimize awy empty screen
-// - Spacers (Vert/Horz)
-// - Test multiline
-// - Test redrawing
-// - Custom borders (overload)
-// - Colors
