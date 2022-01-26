@@ -1,8 +1,12 @@
 package me.ulrichBarnstedt.libOutput.render;
 
-public interface Element {
-    public void render (int x, int y);
-    public int totalWidth ();
-    public int totalHeight ();
-    public void attachParent (Screen screen);
+/**
+ * Base class for all renderable elements.
+ * Not an interface because of access to methods.
+ */
+public abstract class Element {
+    abstract void render (int x, int y);
+    abstract int totalWidth ();
+    abstract int totalHeight ();
+    abstract void attachParent (Screen screen);
 }

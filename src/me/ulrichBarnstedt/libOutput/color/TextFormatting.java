@@ -3,6 +3,9 @@ package me.ulrichBarnstedt.libOutput.color;
 import me.ulrichBarnstedt.libOutput.StringLiteral;
 import me.ulrichBarnstedt.libOutput.Term;
 
+/**
+ * Complete list of text-formatting escape codes
+ */
 public class TextFormatting {
     public static StringLiteral RESET = new StringLiteral(Term.ESCAPE + "[0m");
 

@@ -1,5 +1,8 @@
 package me.ulrichBarnstedt.libOutput.color;
 
+/**
+ * Complete list of 3-4 bit color codes for the terminal
+ */
 public class AsciiList {
     private AsciiList () {}
 

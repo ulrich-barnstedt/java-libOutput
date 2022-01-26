@@ -2,11 +2,18 @@ package me.ulrichBarnstedt.libOutput.render;
 
 import java.util.ArrayList;
 
-public class MultilineText implements Element {
+/**
+ * Text spanning over multiple lines
+ * @see Text
+ */
+public class MultilineText extends Element {
     private ArrayList<Text> content;
     private Screen boundScreen;
     private int totalWidth;
 
+    /**
+     * @param in A list of predefined strings to add
+     */
     public MultilineText (String ... in) {
         this.content = new ArrayList<>();
         for (String s : in) {
@@ -14,6 +21,12 @@ public class MultilineText implements Element {
         }
     }
 
+    /**
+     * Set a line of the multiline string to some text
+     * @param idx Line to set
+     * @param to Text to set to
+     * @return Instance for chaining
+     */
     public MultilineText set (int idx, Text to) {
         to.attachParent(this.boundScreen);
         this.content.set(idx, to);
@@ -23,6 +36,11 @@ public class MultilineText implements Element {
         return this;
     }
 
+    /**
+     * Add a text element to the end
+     * @param content
+     * @return Instance for chaining
+     */
     public MultilineText add (Text content) {
         content.attachParent(this.boundScreen);
         this.content.add(content);
@@ -32,10 +50,19 @@ public class MultilineText implements Element {
         return this;
     }
 
+    /**
+     * Get a text element by index (order added)
+     * @param idx
+     * @return Requested element
+     */
     public Text get (int idx) {
         return this.content.get(idx);
     }
 
+    /**
+     * Delete an element by index
+     * @param idx
+     */
     public void delete (int idx) {
         this.content.remove(idx);
         this.recalculateWidth();
@@ -51,23 +78,23 @@ public class MultilineText implements Element {
     }
 
     @Override
-    public void render (int x, int y) {
+    void render (int x, int y) {
         for (int yCounter = 0; yCounter < this.content.size(); yCounter++)
             this.content.get(yCounter).render(x, yCounter + y);
     }
 
     @Override
-    public int totalWidth () {
+    int totalWidth () {
         return this.totalWidth;
     }
 
     @Override
-    public int totalHeight () {
+    int totalHeight () {
         return this.content.size();
     }
 
     @Override
-    public void attachParent (Screen screen) {
+    void attachParent (Screen screen) {
         this.boundScreen = screen;
         for (Text t : this.content)
             t.attachParent(screen);

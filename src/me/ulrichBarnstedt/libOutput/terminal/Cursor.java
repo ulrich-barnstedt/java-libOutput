@@ -4,6 +4,9 @@ import me.ulrichBarnstedt.libOutput.StringLiteral;
 import me.ulrichBarnstedt.libOutput.Term;
 import me.ulrichBarnstedt.libOutput.Wrapper;
 
+/**
+ * Terminal codes for moving the cursor
+ */
 public class Cursor {
     public static final StringLiteral HOME = new StringLiteral(Term.ESCAPE + "[H");
 

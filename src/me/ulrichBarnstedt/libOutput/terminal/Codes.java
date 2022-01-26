@@ -2,6 +2,9 @@ package me.ulrichBarnstedt.libOutput.terminal;
 
 import me.ulrichBarnstedt.libOutput.StringLiteral;
 
+/**
+ * Misc terminal codes
+ */
 public class Codes {
     public static final StringLiteral BELL = new StringLiteral("\007");
     public static final StringLiteral BACKSPACE = new StringLiteral("\010");

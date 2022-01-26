@@ -6,7 +6,12 @@ import me.ulrichBarnstedt.libOutput.terminal.Cursor;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Container implements Element {
+/**
+ * Container class for use in UI.
+ * Can contain other elements, can have a border.
+ * Supports colors, padding, and other functions.
+ */
+public class Container extends Element {
     private boolean showBorder;
     private boolean vertical;
     private String title;
@@ -26,6 +31,11 @@ public class Container implements Element {
     private String B_RT = "┐";
     private String B_RB = "┘";
 
+    /**
+     * @param showBorder If the container has a border
+     * @param vertical If the elements are aligned vertical (else horizontal)
+     * @param elements An optional list of predefined elements
+     */
     public Container (boolean showBorder, boolean vertical, Element ... elements) {
         this.showBorder = showBorder;
         this.content = new ArrayList<>();
@@ -40,6 +50,16 @@ public class Container implements Element {
 
     // --------------------- Config
 
+    /**
+     * Define a set of custom border characters
+     * @param vertical
+     * @param horizontal
+     * @param leftTop
+     * @param leftBottom
+     * @param rightTop
+     * @param rightBottom
+     * @return Instance for chaining
+     */
     public Container customBorderCharacters (String vertical, String horizontal, String leftTop, String leftBottom, String rightTop, String rightBottom) {
         this.B_VERTICAL = vertical;
         this.B_HORIZONTAL = horizontal;
@@ -52,6 +72,12 @@ public class Container implements Element {
         return this;
     }
 
+    /**
+     * Configure padding of the container
+     * @param xPadding Padding on x-axis
+     * @param yPadding Padding on y-axis
+     * @return Instance for chaining
+     */
     public Container setPadding (int xPadding, int yPadding) {
         this.xPadding = xPadding;
         this.yPadding = yPadding;
@@ -62,6 +88,11 @@ public class Container implements Element {
         return this;
     }
 
+    /**
+     * Configure title of container
+     * @param title
+     * @return Instance for chaining
+     */
     public Container setTitle (String title) {
         this.title = title;
         this.recalculateSizes();
@@ -70,6 +101,11 @@ public class Container implements Element {
         return this;
     }
 
+    /**
+     * Set the color of the border and title
+     * @param color The color as a string (normally an escape code, see COLOR part of library for helper classes which support these)
+     * @return Instance for chaining
+     */
     public Container setColor (String color) {
         this.color = color;
         this.attemptRedraw();
@@ -79,6 +115,11 @@ public class Container implements Element {
 
     // --------------------- Element Management
 
+    /**
+     * Add an element to the container
+     * @param element
+     * @return Instance for chaining
+     */
     public Container addElement (Element element) {
         element.attachParent(this.boundScreen);
         this.content.add(element);
@@ -89,10 +130,19 @@ public class Container implements Element {
         return this;
     }
 
+    /**
+     * Get an element from the container by index (by order added)
+     * @param idx
+     * @return Requested element
+     */
     public Element getElement (int idx) {
         return this.content.get(idx);
     }
 
+    /**
+     * Delete an element at the specified index (by order added)
+     * @param idx
+     */
     public void deleteElement (int idx) {
         this.content.remove(idx);
 
@@ -158,7 +208,7 @@ public class Container implements Element {
     }
 
     @Override
-    public void render (int x, int y) {
+    void render (int x, int y) {
         if (this.showBorder) {
             this.renderBox(x, y);
             x++;
@@ -186,17 +236,17 @@ public class Container implements Element {
     // --------------------- Standard Functions
 
     @Override
-    public int totalWidth () {
+    int totalWidth () {
         return this.width;
     }
 
     @Override
-    public int totalHeight () {
+    int totalHeight () {
         return this.height;
     }
 
     @Override
-    public void attachParent (Screen screen) {
+    void attachParent (Screen screen) {
         this.boundScreen = screen;
         for (Element e : this.content)
             e.attachParent(screen);
