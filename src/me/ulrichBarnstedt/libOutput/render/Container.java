@@ -17,12 +17,14 @@ public class Container extends Element {
     private String title;
     private ArrayList<Element> content;
     private Screen boundScreen;
-    private int xPadding;
-    private int yPadding;
     private String color = "";
 
     private int height;
     private int width;
+    private int lPadding;
+    private int rPadding;
+    private int tPadding;
+    private int bPadding;
 
     private String B_VERTICAL = "│";
     private String B_HORIZONTAL = "─";
@@ -40,9 +42,12 @@ public class Container extends Element {
         this.showBorder = showBorder;
         this.content = new ArrayList<>();
         this.vertical = vertical;
-        this.xPadding = 0;
-        this.yPadding = 0;
         this.content.addAll(Arrays.asList(elements));
+
+        this.lPadding = 0;
+        this.rPadding = 0;
+        this.tPadding = 0;
+        this.bPadding = 0;
 
         //init
         this.recalculateSizes();
@@ -74,18 +79,32 @@ public class Container extends Element {
 
     /**
      * Configure padding of the container
-     * @param xPadding Padding on x-axis
-     * @param yPadding Padding on y-axis
+     * @param l Left padding
+     * @param r Right padding
+     * @param b Bottom padding
+     * @param t Top padding
      * @return Instance for chaining
      */
-    public Container setPadding (int xPadding, int yPadding) {
-        this.xPadding = xPadding;
-        this.yPadding = yPadding;
+    public Container setPadding (int l, int r, int b, int t) {
+        this.lPadding = l;
+        this.rPadding = r;
+        this.bPadding = b;
+        this.tPadding = t;
 
         this.recalculateSizes();
         this.attemptRedraw();
 
         return this;
+    }
+
+    /**
+     * Configure padding of the container
+     * @param x Padding on x-axis
+     * @param y Padding on y-axis
+     * @return Instance for chaining
+     */
+    public Container setPadding (int x, int y) {
+        return this.setPadding(x, x, y, y);
     }
 
     /**
@@ -170,8 +189,11 @@ public class Container extends Element {
         }
 
         int borderChange = showBorder ? 2 : 0;
-        this.height = vertical ? totalHeight + this.yPadding * 2 + borderChange : maxHeight + this.yPadding * 2 + borderChange;
-        this.width = vertical ? maxWidth + this.xPadding * 2 + borderChange : totalWidth + this.xPadding * 2 + borderChange;
+        int hc = this.bPadding + this.tPadding + borderChange;
+        int wc = this.rPadding + this.lPadding + borderChange;
+
+        this.height = vertical ? totalHeight + hc : maxHeight + hc;
+        this.width = vertical ? maxWidth + wc : totalWidth + wc;
     }
 
     private void renderBox (int x, int y) {
@@ -215,8 +237,8 @@ public class Container extends Element {
             y++;
         }
 
-        y += this.yPadding;
-        x += this.xPadding;
+        y += this.tPadding;
+        x += this.lPadding;
 
         //Content
         for (Element e : this.content) {

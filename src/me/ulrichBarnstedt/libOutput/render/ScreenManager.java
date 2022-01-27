@@ -1,5 +1,7 @@
 package me.ulrichBarnstedt.libOutput.render;
 
+import me.ulrichBarnstedt.libOutput.terminal.Cursor;
+
 import java.util.HashMap;
 
 /**
@@ -20,6 +22,13 @@ public class ScreenManager {
      * @return Instance for chaining
      */
     public ScreenManager open (String key) {
+        if (!pages.containsKey(key)) {
+            Cursor.toPos(0, 0).p();
+            System.err.print("Invalid key " + key + ".");
+
+            System.exit(1);
+        }
+
         this.selected = key;
         this.pages.get(key).redraw();
 

@@ -2,3 +2,5 @@ Manifest-Version: 1.0
 Created-By: Ulrich Barnstedt
 Name: ulrichBarnstedt/libOutput/
 Sealed: true
+Specification-Title: Ulrich Barnstedt's libOutput
+Specification-Version: 1.1
