@@ -27,6 +27,8 @@ public abstract class ElementBox<T extends ElementBox<T>> extends Element {
 
         this.boxDrawingStyle = BoxStyle.defaultStyle();
         this.paddingStyle = PaddingStyle.defaultStyle();
+
+        this.recalculateSize();
     }
 
     // ------------------------------- Logic methods
@@ -61,12 +63,17 @@ public abstract class ElementBox<T extends ElementBox<T>> extends Element {
     void render (int x, int y) {
         System.out.print(this.color);
 
-        this.renderInitialBorder(x, y);
+        if (this.showBorder)
+            this.renderInitialBorder(x, y);
         this.renderBoxArtifacts(x, y);
         this.renderTitle(x, y);
 
         AsciiList.RESET.p();
 
+        if (this.showBorder) {
+            y++;
+            x++;
+        }
         this.renderBoxContent(x, y);
     }
 
@@ -96,6 +103,11 @@ public abstract class ElementBox<T extends ElementBox<T>> extends Element {
         if (this.title != null) {
             System.out.print(Cursor.toPos(x + 2, y) + this.title);
         }
+    }
+
+    private void resizeArray (int to) {
+        while (this.content.size() < to)
+            this.content.add(new ArrayList<>());
     }
 
     // ------------------------------- Setters / modifying styles
@@ -133,6 +145,7 @@ public abstract class ElementBox<T extends ElementBox<T>> extends Element {
      */
     public T setTitle (String title) {
         this.title = title;
+
         this.recalculateSize();
         this.attemptRedraw();
 
@@ -150,4 +163,55 @@ public abstract class ElementBox<T extends ElementBox<T>> extends Element {
 
         return (T) this;
     }
+
+    public T addElement (int x, Element element) {
+        this.resizeArray(x + 1);
+        this.content.get(x).add(element);
+
+        this.recalculateSize();
+        this.attemptRedraw();
+
+        return (T) this;
+    }
+
+    /*
+    public T addElementVertical (int x, Element element) {
+        for (ArrayList<Element> row : this.content) {
+            if (row.size() - 1 >= x && !(row.get(x) instanceof Empty)) continue;
+
+            while(row.size() < x)
+                row.add(new Empty());
+
+            if (row.size() - 1 < x)
+                row.add(element);
+            else
+                row.set(x, element);
+
+            this.recalculateSize();
+            this.attemptRedraw();
+            return (T) this;
+        }
+
+        this.content.add(new ArrayList<>());
+        while (this.content.get(this.content.size() - 1).size() < x)
+            this.content.get(this.content.size() - 1).add(new Empty());
+
+        this.content.get(this.content.size() - 1).add(element);
+
+        return (T) this;
+    }
+     */
+
+    /*
+    public T setElement (int x, int y, Element element) {
+        this.resizeArray(x + 1);
+        this.content.set(x, new ArrayList<>());
+        this.content.get(x).set(y, element);
+
+        this.recalculateSize();
+        this.attemptRedraw();
+
+        return (T) this;
+    }
+    */
 }

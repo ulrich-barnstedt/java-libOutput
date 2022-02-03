@@ -47,8 +47,9 @@ public class PaddingStyle {
     /**
      * Left
      */
-    public void setL (int l) {
+    public PaddingStyle setL (int l) {
         this.l = l;
+        return this;
     }
 
     /**
@@ -61,8 +62,9 @@ public class PaddingStyle {
     /**
      * Right
      */
-    public void setR (int r) {
+    public PaddingStyle setR (int r) {
         this.r = r;
+        return this;
     }
 
     /**
@@ -75,8 +77,9 @@ public class PaddingStyle {
     /**
      * Top
      */
-    public void setT (int t) {
+    public PaddingStyle setT (int t) {
         this.t = t;
+        return this;
     }
 
     /**
@@ -89,7 +92,8 @@ public class PaddingStyle {
     /**
      * Bottom
      */
-    public void setB (int b) {
+    public PaddingStyle setB (int b) {
         this.b = b;
+        return this;
     }
 }

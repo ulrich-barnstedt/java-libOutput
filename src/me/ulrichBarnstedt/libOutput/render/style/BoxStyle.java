@@ -64,8 +64,9 @@ public class BoxStyle {
     /**
      * Vertical line
      */
-    public void setVERTICAL (String VERTICAL) {
+    public BoxStyle setVERTICAL (String VERTICAL) {
         this.VERTICAL = VERTICAL;
+        return this;
     }
 
     /**
@@ -78,8 +79,9 @@ public class BoxStyle {
     /**
      * Horizontal line
      */
-    public void setHORIZONTAL (String HORIZONTAL) {
+    public BoxStyle setHORIZONTAL (String HORIZONTAL) {
         this.HORIZONTAL = HORIZONTAL;
+        return this;
     }
 
     /**
@@ -92,8 +94,9 @@ public class BoxStyle {
     /**
      * Left top corner
      */
-    public void setLT (String LT) {
+    public BoxStyle setLT (String LT) {
         this.LT = LT;
+        return this;
     }
 
     /**
@@ -106,8 +109,9 @@ public class BoxStyle {
     /**
      * Left bottom corner
      */
-    public void setLB (String LB) {
+    public BoxStyle setLB (String LB) {
         this.LB = LB;
+        return this;
     }
 
     /**
@@ -120,8 +124,9 @@ public class BoxStyle {
     /**
      * Right top corner
      */
-    public void setRT (String RT) {
+    public BoxStyle setRT (String RT) {
         this.RT = RT;
+        return this;
     }
 
     /**
@@ -134,8 +139,9 @@ public class BoxStyle {
     /**
      * Right bottom corner
      */
-    public void setRB (String RB) {
+    public BoxStyle setRB (String RB) {
         this.RB = RB;
+        return this;
     }
 
     /**
@@ -148,8 +154,9 @@ public class BoxStyle {
     /**
      * Left intersection
      */
-    public void setLI (String LI) {
+    public BoxStyle setLI (String LI) {
         this.LI = LI;
+        return this;
     }
 
     /**
@@ -162,8 +169,9 @@ public class BoxStyle {
     /**
      * Right intersection
      */
-    public void setRI (String RI) {
+    public BoxStyle setRI (String RI) {
         this.RI = RI;
+        return this;
     }
 
     /**
@@ -176,8 +184,9 @@ public class BoxStyle {
     /**
      * Bottom intersection
      */
-    public void setBI (String BI) {
+    public BoxStyle setBI (String BI) {
         this.BI = BI;
+        return this;
     }
 
     /**
@@ -190,8 +199,9 @@ public class BoxStyle {
     /**
      * Top intersection
      */
-    public void setTI (String TI) {
+    public BoxStyle setTI (String TI) {
         this.TI = TI;
+        return this;
     }
 
     /**
@@ -204,7 +214,8 @@ public class BoxStyle {
     /**
      * Center intersection
      */
-    public void setCENTER (String CENTER) {
+    public BoxStyle setCENTER (String CENTER) {
         this.CENTER = CENTER;
+        return this;
     }
 }
