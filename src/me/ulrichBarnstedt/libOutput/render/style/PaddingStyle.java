@@ -1,5 +1,9 @@
 package me.ulrichBarnstedt.libOutput.render.style;
 
+/**
+ * Class for representing padding on container-like elements.
+ * All setters are chainable.
+ */
 public class PaddingStyle {
     private int l;
     private int r;

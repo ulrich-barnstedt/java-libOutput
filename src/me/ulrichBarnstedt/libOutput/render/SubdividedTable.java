@@ -2,8 +2,11 @@ package me.ulrichBarnstedt.libOutput.render;
 
 import java.util.ArrayList;
 
+/**
+ * Table element with borders around each separate element
+ */
 public class SubdividedTable extends ElementBox<SubdividedTable> {
-    protected SubdividedTable (boolean showBorder) {
+    public SubdividedTable (boolean showBorder) {
         super(showBorder);
     }
 

@@ -2,6 +2,10 @@ package me.ulrichBarnstedt.libOutput.render;
 
 import java.util.ArrayList;
 
+/**
+ * Table element, without borders around the elements.
+ * Should be used with boxes or other layout elements.
+ */
 public class Table extends ElementBox<Table> {
     public Table (boolean showBorder) {
         super(showBorder);

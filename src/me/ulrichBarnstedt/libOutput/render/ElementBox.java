@@ -7,6 +7,10 @@ import me.ulrichBarnstedt.libOutput.terminal.Cursor;
 
 import java.util.ArrayList;
 
+/**
+ * Abstract class representing table-like containers
+ * @param <T>
+ */
 public abstract class ElementBox<T extends ElementBox<T>> extends Element {
     protected ArrayList<ArrayList<Element>> content;
     protected Screen boundScreen;
@@ -164,6 +168,12 @@ public abstract class ElementBox<T extends ElementBox<T>> extends Element {
         return (T) this;
     }
 
+    /**
+     * Add an element to a table, will be appended at end
+     * @param x Position on the x-axis to insert the element
+     * @param element Element to add
+     * @return Instance for chaining
+     */
     public T addElement (int x, Element element) {
         this.resizeArray(x + 1);
         this.content.get(x).add(element);
@@ -173,45 +183,4 @@ public abstract class ElementBox<T extends ElementBox<T>> extends Element {
 
         return (T) this;
     }
-
-    /*
-    public T addElementVertical (int x, Element element) {
-        for (ArrayList<Element> row : this.content) {
-            if (row.size() - 1 >= x && !(row.get(x) instanceof Empty)) continue;
-
-            while(row.size() < x)
-                row.add(new Empty());
-
-            if (row.size() - 1 < x)
-                row.add(element);
-            else
-                row.set(x, element);
-
-            this.recalculateSize();
-            this.attemptRedraw();
-            return (T) this;
-        }
-
-        this.content.add(new ArrayList<>());
-        while (this.content.get(this.content.size() - 1).size() < x)
-            this.content.get(this.content.size() - 1).add(new Empty());
-
-        this.content.get(this.content.size() - 1).add(element);
-
-        return (T) this;
-    }
-     */
-
-    /*
-    public T setElement (int x, int y, Element element) {
-        this.resizeArray(x + 1);
-        this.content.set(x, new ArrayList<>());
-        this.content.get(x).set(y, element);
-
-        this.recalculateSize();
-        this.attemptRedraw();
-
-        return (T) this;
-    }
-    */
 }

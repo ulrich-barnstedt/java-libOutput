@@ -7,41 +7,6 @@ interface SizeHelperFn {
 }
 
 class SizeHelper {
-    /*
-    static int height (ArrayList<ArrayList<Element>> elements, SizeHelperFn heightFn) {
-        int height = 0;
-
-        for (ArrayList<Element> col : elements) {
-            int maxRowHeight = 0;
-
-            for (Element e : col) {
-                int eHeight = heightFn.run(e);
-                if (eHeight > maxRowHeight) maxRowHeight = eHeight;
-            }
-
-            height += maxRowHeight;
-        }
-
-        return height;
-   }
-
-    static int width (ArrayList<ArrayList<Element>> elements, SizeHelperFn widthFn) {
-        int maxWidth = 0;
-
-        for (ArrayList<Element> col : elements) {
-            int rowWidth = 0;
-
-            for (Element e : col)
-                rowWidth += widthFn.run(e);
-
-            if (rowWidth > maxWidth) maxWidth = rowWidth;
-        }
-
-        return maxWidth;
-    }
-    */
-
-
     static int height (ArrayList<ArrayList<Element>> elements, SizeHelperFn heightFn) {
         int maxHeight = 0;
 

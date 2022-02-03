@@ -1,5 +1,9 @@
 package me.ulrichBarnstedt.libOutput.render.style;
 
+/**
+ * Class for representing styling of box drawing.
+ * All setters are chainable.
+ */
 public class BoxStyle {
     private String VERTICAL;
     private String HORIZONTAL;
