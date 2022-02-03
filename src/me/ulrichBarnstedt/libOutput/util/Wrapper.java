@@ -1,4 +1,4 @@
-package me.ulrichBarnstedt.libOutput;
+package me.ulrichBarnstedt.libOutput.util;
 
 /**
  * Basic string wrapper

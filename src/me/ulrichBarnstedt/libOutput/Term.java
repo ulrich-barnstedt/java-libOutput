@@ -1,7 +1,7 @@
 package me.ulrichBarnstedt.libOutput;
 
 /**
- * Global variables for terminal codes
+ * Global variable for terminal escape code
  */
 public class Term {
     public static final String ESCAPE = "\033";

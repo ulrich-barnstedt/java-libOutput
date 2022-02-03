@@ -1,6 +1,6 @@
 package me.ulrichBarnstedt.libOutput.terminal;
 
-import me.ulrichBarnstedt.libOutput.StringLiteral;
+import me.ulrichBarnstedt.libOutput.util.StringLiteral;
 
 /**
  * Misc terminal codes

@@ -1,8 +1,8 @@
 package me.ulrichBarnstedt.libOutput.terminal;
 
-import me.ulrichBarnstedt.libOutput.StringLiteral;
+import me.ulrichBarnstedt.libOutput.util.StringLiteral;
 import me.ulrichBarnstedt.libOutput.Term;
-import me.ulrichBarnstedt.libOutput.Wrapper;
+import me.ulrichBarnstedt.libOutput.util.Wrapper;
 
 /**
  * Terminal codes for moving the cursor

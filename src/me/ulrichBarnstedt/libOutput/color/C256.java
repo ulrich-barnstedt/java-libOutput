@@ -1,6 +1,6 @@
 package me.ulrichBarnstedt.libOutput.color;
 
-import me.ulrichBarnstedt.libOutput.Wrapper;
+import me.ulrichBarnstedt.libOutput.util.Wrapper;
 import me.ulrichBarnstedt.libOutput.Term;
 
 /**

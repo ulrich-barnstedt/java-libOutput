@@ -17,6 +17,8 @@ public abstract class ElementBox<T extends ElementBox<T>> extends Element {
     protected String title;
     protected String color;
     protected boolean showBorder;
+    protected SizeLayout sizeTable;
+    private boolean applyPaddingToSizeTable;
 
     protected BoxStyle boxDrawingStyle;
     protected PaddingStyle paddingStyle;
@@ -24,10 +26,12 @@ public abstract class ElementBox<T extends ElementBox<T>> extends Element {
     protected int height;
     protected int width;
 
-    protected ElementBox (boolean showBorder) {
+    protected ElementBox (boolean showBorder, boolean applyPaddingToSizeTable) {
         this.showBorder = showBorder;
         this.content = new ArrayList<>();
         this.color = "";
+        this.applyPaddingToSizeTable = applyPaddingToSizeTable;
+        this.sizeTable = new SizeLayout(new PaddingStyle(0, 0, 0, 0));
 
         this.boxDrawingStyle = BoxStyle.defaultStyle();
         this.paddingStyle = PaddingStyle.defaultStyle();
@@ -37,9 +41,14 @@ public abstract class ElementBox<T extends ElementBox<T>> extends Element {
 
     // ------------------------------- Logic methods
 
-    abstract protected void recalculateSize ();
+    abstract protected void handleSizeRecalculation ();
     abstract protected void renderBoxArtifacts (int x, int y);
     abstract protected void renderBoxContent (int x, int y);
+
+    protected void recalculateSize () {
+        this.sizeTable.recalculate(this.content);
+        this.handleSizeRecalculation();
+    }
 
     protected void attemptRedraw () {
         if (this.boundScreen != null) this.boundScreen.redraw();
@@ -136,6 +145,9 @@ public abstract class ElementBox<T extends ElementBox<T>> extends Element {
     public T setPadding (PaddingStyle newPadding) {
         this.paddingStyle = newPadding;
 
+        if (this.applyPaddingToSizeTable)
+            this.sizeTable.setElementPadding(newPadding);
+
         this.recalculateSize();
         this.attemptRedraw();
 
@@ -149,8 +161,6 @@ public abstract class ElementBox<T extends ElementBox<T>> extends Element {
      */
     public T setTitle (String title) {
         this.title = title;
-
-        this.recalculateSize();
         this.attemptRedraw();
 
         return (T) this;

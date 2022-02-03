@@ -1,21 +1,24 @@
 package me.ulrichBarnstedt.libOutput.render;
 
-import java.util.ArrayList;
-
 /**
  * Table element, without borders around the elements.
  * Should be used with boxes or other layout elements.
  */
 public class Table extends ElementBox<Table> {
     public Table (boolean showBorder) {
-        super(showBorder);
+        super(showBorder, false);
     }
 
     @Override
-    protected void recalculateSize () {
+    protected void handleSizeRecalculation () {
         int borderChange = showBorder ? 2 : 0;
-        this.height = SizeHelper.height(this.content, Element::totalHeight) + borderChange + this.paddingStyle.getT() + this.paddingStyle.getB();
-        this.width = SizeHelper.width(this.content, Element::totalWidth) + borderChange + this.paddingStyle.getL() + this.paddingStyle.getR();
+
+        System.out.print("ySum: ");
+        for (int i : this.sizeTable.getYSum()) {
+            System.out.print(i + "; ");
+        }
+        System.out.print("\n");
+        System.out.println("SIZE: " + this.sizeTable.getAxisSum().getX() + " | " + this.sizeTable.getAxisSum().getY());
     }
 
     @Override
@@ -23,22 +26,6 @@ public class Table extends ElementBox<Table> {
 
     @Override
     protected void renderBoxContent (int x, int y) {
-        x += this.paddingStyle.getL();
-        y += this.paddingStyle.getT();
 
-        for (ArrayList<Element> col : this.content) {
-            int colWidth = 0;
-            int yOffset = 0;
-
-            for (Element e : col) {
-                e.render(x, y + yOffset);
-                yOffset += e.totalHeight();
-
-                int elementWidth = e.totalWidth();
-                if (elementWidth > colWidth) colWidth = elementWidth;
-            }
-
-            x += colWidth;
-        }
     }
 }
