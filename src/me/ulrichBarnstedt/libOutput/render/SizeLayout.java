@@ -38,8 +38,8 @@ class SizeLayout {
 
             for (int y = 0; y < col.size(); y++) {
                 Element e = col.get(y);
-                int width = e.totalWidth() + elementPadding.getT() + elementPadding.getB();
-                int height = e.totalHeight() + elementPadding.getL() + elementPadding.getR();
+                int width = e.totalWidth() + elementPadding.getR() + elementPadding.getL();
+                int height = e.totalHeight() + elementPadding.getT() + elementPadding.getB();
 
                 this.checkSize(x, y);
                 this.sizes.get(x).get(y).set(width, height);

@@ -48,10 +48,8 @@ public class SubdividedTable extends ElementBox<SubdividedTable> {
     }
 
     private void intersectHorizontalBar (int x, int y, ArrayList<Integer> points, String character) {
-        int xOffset = -2;
         for (int p = 0; p < points.size() - 1; p++) {
-            xOffset += points.get(p + 1) - points.get(p);
-            System.out.print(Cursor.toPos(x + xOffset, y) + character);
+            System.out.print(Cursor.toPos(x + points.get(p) - 1, y) + character);
         }
     }
 
@@ -83,43 +81,41 @@ public class SubdividedTable extends ElementBox<SubdividedTable> {
 
     @Override
     protected void renderBoxArtifacts (int x, int y) {
-        ArrayList<Integer> xIntersections = this.extractIntersections(this.sizeTable.getYSum());
-        ArrayList<Integer> yIntersections = this.extractIntersections(this.sizeTable.getXSum());
+        ArrayList<Integer> xIntersections = this.extractIntersections(this.sizeTable.getXSum());
+        ArrayList<Integer> yIntersections = this.extractIntersections(this.sizeTable.getYSum());
 
         if (this.showBorder) {
             x++;
 
-            this.intersectHorizontalBar(x, y, yIntersections, this.boxDrawingStyle.getTI());
+            this.intersectHorizontalBar(x, y, xIntersections, this.boxDrawingStyle.getTI());
             y++;
         }
 
-        y += this.verticalBar(x, y, xIntersections.get(0) - 1, yIntersections);
+        y += this.verticalBar(x, y, yIntersections.get(0) - 1, xIntersections);
 
-        for (int i = 0; i < xIntersections.size() - 1; i++) {
-            this.drawHorizontalBar(x, y, yIntersections);
+        for (int i = 0; i < yIntersections.size() - 1; i++) {
+            this.drawHorizontalBar(x, y, xIntersections);
             y++;
-            y += this.verticalBar(x, y, xIntersections.get(i + 1) - xIntersections.get(i) - 1, yIntersections);
+            y += this.verticalBar(x, y, yIntersections.get(i + 1) - yIntersections.get(i) - 1, xIntersections);
         }
 
         if (this.showBorder) {
-            this.intersectHorizontalBar(x, y, yIntersections, this.boxDrawingStyle.getBI());
+            this.intersectHorizontalBar(x, y, xIntersections, this.boxDrawingStyle.getBI());
         }
     }
 
     @Override
     protected void renderBoxContent (int x, int y) {
-        for (int listX = 0; listX < this.content.size(); listX++) {
-            ArrayList<Element> col = this.content.get(listX);
+        for (int elementX = 0; elementX < this.content.size(); elementX++) {
+            ArrayList<Element> col = this.content.get(elementX);
             int yOffset = 0;
 
-            x += this.paddingStyle.getL();
-
-            for (int listY = 0; listY < col.size(); listY++) {
-                col.get(listY).render(x, y + yOffset + this.paddingStyle.getT());
-                yOffset += this.sizeTable.getYSum().get(listY) + this.paddingStyle.getT() + this.paddingStyle.getB() - 1;
+            for (int elementY = 0; elementY < col.size(); elementY++) {
+                col.get(elementY).render(x + this.paddingStyle.getL(), y + this.paddingStyle.getT() + yOffset);
+                yOffset += this.sizeTable.getYSum().get(elementY) + 1;
             }
 
-            x += this.sizeTable.getXSum().get(listX) + this.paddingStyle.getR() - 1;
+            x += this.sizeTable.getXSum().get(elementX) + 1;
         }
     }
 }
