@@ -19,6 +19,8 @@ public class MultilineText extends Element {
         for (String s : in) {
             content.add(new Text(s));
         }
+
+        this.recalculateWidth();
     }
 
     /**

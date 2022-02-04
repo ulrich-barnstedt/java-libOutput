@@ -48,8 +48,10 @@ public class SubdividedTable extends ElementBox<SubdividedTable> {
     }
 
     private void intersectHorizontalBar (int x, int y, ArrayList<Integer> points, String character) {
+        int xOffset = -2;
         for (int p = 0; p < points.size() - 1; p++) {
-            System.out.print(Cursor.toPos(x + points.get(p + 1) - points.get(p) - 1, y) + character);
+            xOffset += points.get(p + 1) - points.get(p);
+            System.out.print(Cursor.toPos(x + xOffset, y) + character);
         }
     }
 
