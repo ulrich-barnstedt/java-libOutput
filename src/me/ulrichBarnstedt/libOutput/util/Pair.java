@@ -54,4 +54,8 @@ public class Pair<X, Y> {
     public Y y () {
         return y;
     }
+
+    public String toString () {
+        return "<" + x + " | " + y + ">";
+    }
 }

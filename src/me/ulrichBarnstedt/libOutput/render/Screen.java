@@ -1,6 +1,8 @@
 package me.ulrichBarnstedt.libOutput.render;
 
 import me.ulrichBarnstedt.libOutput.terminal.Clear;
+import me.ulrichBarnstedt.libOutput.terminal.Cursor;
+import me.ulrichBarnstedt.libOutput.util.Wrapper;
 
 /**
  * The base renderer for elements, base for displaying
@@ -34,5 +36,13 @@ public class Screen {
 
         Clear.SCREEN.print();
         this.content.render(0, 0);
+    }
+
+    /**
+     * Move the cursor to the bottom of the content, useful if you want to continue using the terminal after drawing.
+     * @return Wrapper instance for printing
+     */
+    public Wrapper cursorToEnd () {
+        return Cursor.toPos(0, this.content.totalHeight());
     }
 }
