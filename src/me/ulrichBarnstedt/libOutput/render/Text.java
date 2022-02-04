@@ -2,6 +2,7 @@ package me.ulrichBarnstedt.libOutput.render;
 
 import me.ulrichBarnstedt.libOutput.color.AsciiList;
 import me.ulrichBarnstedt.libOutput.terminal.Cursor;
+import me.ulrichBarnstedt.libOutput.util.Wrapper;
 
 /**
  * Single, renderable line of text
@@ -40,6 +41,15 @@ public class Text extends Element {
         if (this.boundScreen != null) this.boundScreen.redraw();
 
         return this;
+    }
+
+    /**
+     * Set the display color
+     * @param color Color as a wrapper instance
+     * @return Instance for chaining
+     */
+    public Text setColor (Wrapper color) {
+        return this.setColor(color.toString());
     }
 
     /**

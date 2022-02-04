@@ -4,7 +4,7 @@ package me.ulrichBarnstedt.libOutput.util;
  * Basic string wrapper
  * @see StringLiteral
  */
-public class Wrapper {
+abstract public class Wrapper {
     /**
      * Print the string
      */
@@ -18,4 +18,9 @@ public class Wrapper {
     public void p() {
         this.print();
     }
+
+    /**
+     * Require classes to implement toString()
+     */
+    abstract public String toString ();
 }

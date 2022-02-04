@@ -4,6 +4,7 @@ import me.ulrichBarnstedt.libOutput.color.AsciiList;
 import me.ulrichBarnstedt.libOutput.render.style.BoxStyle;
 import me.ulrichBarnstedt.libOutput.render.style.PaddingStyle;
 import me.ulrichBarnstedt.libOutput.terminal.Cursor;
+import me.ulrichBarnstedt.libOutput.util.Wrapper;
 
 import java.util.ArrayList;
 
@@ -113,7 +114,7 @@ public abstract class ElementBox<T extends ElementBox<T>> extends Element {
     }
 
     private void renderTitle (int x, int y) {
-        if (this.title != null) {
+        if (this.title != null && this.showBorder) {
             System.out.print(Cursor.toPos(x + 2, y) + this.title);
         }
     }
@@ -156,7 +157,7 @@ public abstract class ElementBox<T extends ElementBox<T>> extends Element {
 
     /**
      * Configure title of container
-     * @param title
+     * @param title New title
      * @return Instance for chaining
      */
     public T setTitle (String title) {
@@ -176,6 +177,15 @@ public abstract class ElementBox<T extends ElementBox<T>> extends Element {
         this.attemptRedraw();
 
         return (T) this;
+    }
+
+    /**
+     * Set the color of the border and title
+     * @param color Color as a wrapper instance
+     * @return Instance for chaining
+     */
+    public T setColor (Wrapper color) {
+        return this.setColor(color.toString());
     }
 
     /**
