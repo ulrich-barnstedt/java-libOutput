@@ -203,4 +203,65 @@ public abstract class ElementBox<T extends ElementBox<T>> extends Element {
 
         return (T) this;
     }
+
+    /**
+     * Get an element by its indexes
+     * @param x X index
+     * @param y Y index
+     * @return Element
+     */
+    public Element getElement (int x, int y) {
+        return this.content.get(x).get(y);
+    }
+
+    /**
+     * Delete an element at the specified index
+     * @param x X index
+     * @param y Y index
+     */
+    public void deleteElement (int x, int y) {
+        this.content.get(x).remove(y);
+        this.recalculateSize();
+        this.attemptRedraw();
+    }
+
+    /**
+     * Get the total amount of columns in the table, includes columns with 0 content
+     * @return Amount of columns
+     */
+    public int columnCount () {
+        return this.content.size();
+    }
+
+    /**
+     * Get the amount of columns in the table, excluding columns with 0 content
+     * @return Amount of columns
+     */
+    public int filledColumnCount () {
+        for (int i = this.content.size() - 1; i >= 0; i--) {
+            if (this.content.get(i).size() == 0) continue;
+            return i + 1;
+        }
+
+        return 0;
+    }
+
+    /**
+     * Get the total amount of rows in the table
+     * @param x Column
+     * @return Amount of elements in this column
+     */
+    public int rowCount (int x) {
+        return this.content.get(x).size();
+    }
+
+    /**
+     * Delete a column
+     * @param x The index of the column
+     */
+    public void deleteColumn (int x) {
+        this.content.remove(x);
+        this.recalculateSize();
+        this.attemptRedraw();
+    }
 }
