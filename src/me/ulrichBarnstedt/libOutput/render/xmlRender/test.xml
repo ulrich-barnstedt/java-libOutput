@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE screen SYSTEM "TML.dtd">
+
+<screen id="testScreen">
+    <table showBorder="false">
+        <boxDrawingStyle leftTop="a"/>
+        <paddingStyle bottom="1"/>
+        <col>
+            <text color="&FG_BLACK;">
+                test
+            </text>
+        </col>
+    </table>
+</screen>

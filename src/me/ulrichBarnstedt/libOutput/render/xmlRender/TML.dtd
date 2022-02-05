@@ -1,0 +1,53 @@
+<!ELEMENT screenManager (screen)>
+        <!ATTLIST screenManager selected IDREF #IMPLIED>
+
+<!ELEMENT screen (text|empty|multilineText|table|subdividedTable|spacer)>
+        <!ATTLIST screen id ID #REQUIRED>
+
+<!ELEMENT layout (screen|screenManager)>
+<!ENTITY % element-group-table "">
+
+<!ELEMENT text (#PCDATA)>
+        <!ATTLIST text color CDATA #IMPLIED>
+
+<!ELEMENT empty EMPTY>
+
+<!ELEMENT multilineText (text*)>
+
+<!ELEMENT paddingStyle ()>
+        <!ATTLIST paddingStyle right CDATA #IMPLIED>
+        <!ATTLIST paddingStyle top CDATA #IMPLIED>
+        <!ATTLIST paddingStyle left CDATA #IMPLIED>
+        <!ATTLIST paddingStyle bottom CDATA #IMPLIED>
+
+<!ELEMENT boxDrawingStyle ()>
+        <!ATTLIST boxDrawingStyle vertical CDATA #IMPLIED>
+        <!ATTLIST boxDrawingStyle horizontal CDATA #IMPLIED>
+        <!ATTLIST boxDrawingStyle leftTop CDATA #IMPLIED>
+        <!ATTLIST boxDrawingStyle leftBottom CDATA #IMPLIED>
+        <!ATTLIST boxDrawingStyle rightTop CDATA #IMPLIED>
+        <!ATTLIST boxDrawingStyle rightBottom CDATA #IMPLIED>
+        <!ATTLIST boxDrawingStyle leftIntersection CDATA #IMPLIED>
+        <!ATTLIST boxDrawingStyle rightIntersection CDATA #IMPLIED>
+        <!ATTLIST boxDrawingStyle topIntersection CDATA #IMPLIED>
+        <!ATTLIST boxDrawingStyle bottomIntersection CDATA #IMPLIED>
+        <!ATTLIST boxDrawingStyle centerIntersection CDATA #IMPLIED>
+
+<!ELEMENT col (text|empty|multilineText|table|subdividedTable|spacer)*>
+
+<!ELEMENT table (col*|(paddingStyle?)|(boxDrawingStyle?))>
+        <!ATTLIST table showBorder (true|false) #REQUIRED>
+        <!ATTLIST table title CDATA #IMPLIED>
+        <!ATTLIST table color CDATA #IMPLIED>
+
+<!ELEMENT subdividedTable (col*|(paddingStyle?)|(boxDrawingStyle?))>
+        <!ATTLIST subdividedTable showBorder (true|false) #REQUIRED>
+        <!ATTLIST subdividedTable title CDATA #IMPLIED>
+        <!ATTLIST subdividedTable color CDATA #IMPLIED>
+
+<!ELEMENT spacer EMPTY>
+        <!ATTLIST spacer ySpacing CDATA #IMPLIED>
+        <!ATTLIST spacer xSpacing CDATA #IMPLIED>
+
+
+<!ENTITY FG_BLACK "test">

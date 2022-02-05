@@ -1,4 +1,4 @@
-package me.ulrichBarnstedt.libOutput.render;
+package me.ulrichBarnstedt.libOutput.render.elments;
 
 import me.ulrichBarnstedt.libOutput.render.style.PaddingStyle;
 import me.ulrichBarnstedt.libOutput.util.Pair;

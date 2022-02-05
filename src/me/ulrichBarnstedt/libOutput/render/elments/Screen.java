@@ -1,4 +1,4 @@
-package me.ulrichBarnstedt.libOutput.render;
+package me.ulrichBarnstedt.libOutput.render.elments;
 
 import me.ulrichBarnstedt.libOutput.terminal.Clear;
 import me.ulrichBarnstedt.libOutput.terminal.Cursor;

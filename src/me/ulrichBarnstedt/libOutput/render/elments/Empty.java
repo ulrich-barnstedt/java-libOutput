@@ -1,4 +1,4 @@
-package me.ulrichBarnstedt.libOutput.render;
+package me.ulrichBarnstedt.libOutput.render.elments;
 
 public class Empty extends Element {
     @Override
