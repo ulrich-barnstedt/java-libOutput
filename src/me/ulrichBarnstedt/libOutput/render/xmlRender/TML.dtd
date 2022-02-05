@@ -1,11 +1,10 @@
+<!--
 <!ELEMENT screenManager (screen)>
         <!ATTLIST screenManager selected IDREF #IMPLIED>
+-->
 
-<!ELEMENT screen (text|empty|multilineText|table|subdividedTable|spacer)>
-        <!ATTLIST screen id ID #REQUIRED>
-
-<!ELEMENT layout (screen|screenManager)>
-<!ENTITY % element-group-table "">
+<!ELEMENT screen (text|empty|multilineText|table|subdividedTable|spacer|container)>
+        <!-- <!ATTLIST screen id ID #REQUIRED> -->
 
 <!ELEMENT text (#PCDATA)>
         <!ATTLIST text color CDATA #IMPLIED>
@@ -14,13 +13,13 @@
 
 <!ELEMENT multilineText (text*)>
 
-<!ELEMENT paddingStyle ()>
+<!ELEMENT paddingStyle EMPTY>
         <!ATTLIST paddingStyle right CDATA #IMPLIED>
         <!ATTLIST paddingStyle top CDATA #IMPLIED>
         <!ATTLIST paddingStyle left CDATA #IMPLIED>
         <!ATTLIST paddingStyle bottom CDATA #IMPLIED>
 
-<!ELEMENT boxDrawingStyle ()>
+<!ELEMENT boxDrawingStyle EMPTY>
         <!ATTLIST boxDrawingStyle vertical CDATA #IMPLIED>
         <!ATTLIST boxDrawingStyle horizontal CDATA #IMPLIED>
         <!ATTLIST boxDrawingStyle leftTop CDATA #IMPLIED>
@@ -33,21 +32,44 @@
         <!ATTLIST boxDrawingStyle bottomIntersection CDATA #IMPLIED>
         <!ATTLIST boxDrawingStyle centerIntersection CDATA #IMPLIED>
 
-<!ELEMENT col (text|empty|multilineText|table|subdividedTable|spacer)*>
+<!ELEMENT content (text|empty|multilineText|table|subdividedTable|spacer|container)*>
 
-<!ELEMENT table (col*|(paddingStyle?)|(boxDrawingStyle?))>
+<!ELEMENT table (content*|paddingStyle?|boxDrawingStyle?)>
         <!ATTLIST table showBorder (true|false) #REQUIRED>
         <!ATTLIST table title CDATA #IMPLIED>
         <!ATTLIST table color CDATA #IMPLIED>
 
-<!ELEMENT subdividedTable (col*|(paddingStyle?)|(boxDrawingStyle?))>
+<!ELEMENT subdividedTable (content*|paddingStyle?|boxDrawingStyle?)>
         <!ATTLIST subdividedTable showBorder (true|false) #REQUIRED>
         <!ATTLIST subdividedTable title CDATA #IMPLIED>
         <!ATTLIST subdividedTable color CDATA #IMPLIED>
+
+<!ELEMENT container (paddingStyle?|boxDrawingStyle?|content?)>
+        <!ATTLIST container vertical (true|false) #REQUIRED>
+        <!ATTLIST container showBorder (true|false) #REQUIRED>
+        <!ATTLIST container title CDATA #IMPLIED>
+        <!ATTLIST container color CDATA #IMPLIED>
 
 <!ELEMENT spacer EMPTY>
         <!ATTLIST spacer ySpacing CDATA #IMPLIED>
         <!ATTLIST spacer xSpacing CDATA #IMPLIED>
 
-
-<!ENTITY FG_BLACK "test">
+<!ENTITY RESET "\x1B[0m">
+<!ENTITY FG_BLACK "\x1B[30m">
+<!ENTITY FG_RED "\x1B[31m">
+<!ENTITY FG_GREEN "\x1B[32m">
+<!ENTITY FG_YELLOW "\x1B[33m">
+<!ENTITY FG_BLUE "\x1B[34m">
+<!ENTITY FG_MAGENTA "\x1B[35m">
+<!ENTITY FG_CYAN "\x1B[36m">
+<!ENTITY FG_WHITE "\x1B[37m">
+<!ENTITY FG_DEFAULT "\x1B[39m">
+<!ENTITY BG_BLACK "\x1B[40m">
+<!ENTITY BG_RED "\x1B[41m">
+<!ENTITY BG_GREEN "\x1B[42m">
+<!ENTITY BG_YELLOW "\x1B[43m">
+<!ENTITY BG_BLUE "\x1B[44m">
+<!ENTITY BG_MAGENTA "\x1B[45m">
+<!ENTITY BG_CYAN "\x1B[46m">
+<!ENTITY BG_WHITE "\x1B[47m">
+<!ENTITY BG_DEFAULT "\x1B[49m">
