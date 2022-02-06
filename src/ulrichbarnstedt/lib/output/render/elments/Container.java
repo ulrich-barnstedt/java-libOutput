@@ -4,6 +4,9 @@ import ulrichbarnstedt.lib.output.render.style.BoxStyle;
 import ulrichbarnstedt.lib.output.render.style.PaddingStyle;
 import ulrichbarnstedt.lib.output.util.Wrapper;
 
+/**
+ * List of elements which can either be rendered horizontally or vertically
+ */
 public class Container extends Element {
     private boolean vertical;
     private Table table;

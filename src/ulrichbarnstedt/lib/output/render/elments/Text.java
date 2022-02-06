@@ -6,6 +6,8 @@ import ulrichbarnstedt.lib.output.util.Wrapper;
 
 /**
  * Single, renderable line of text
+ * Note: actually only renders one high, so using line breaks is not an option
+ * @see MultilineText
  */
 public class Text extends Element {
     private String content;

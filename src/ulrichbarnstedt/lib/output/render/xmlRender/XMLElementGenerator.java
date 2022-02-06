@@ -8,6 +8,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Converts XML elements into actual elements
+ */
 class XMLElementGenerator {
     private static Class[] params = {Node.class};
     private static Pattern stringBefore = Pattern.compile("^\\s*");

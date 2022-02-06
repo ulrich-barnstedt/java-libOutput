@@ -5,6 +5,9 @@ import ulrichbarnstedt.lib.output.util.Pair;
 
 import java.util.ArrayList;
 
+/**
+ * Internal class for representing row/column sizes in tables
+ */
 class SizeLayout {
     private ArrayList<Integer> ySum;
     private ArrayList<Integer> xSum;

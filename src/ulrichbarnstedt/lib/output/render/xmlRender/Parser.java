@@ -14,6 +14,10 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Unfinished/WIP XML Parser
+ * @deprecated
+ */
 public class Parser {
     DocumentBuilder builder;
 
