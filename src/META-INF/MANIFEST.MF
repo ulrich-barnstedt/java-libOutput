@@ -1,6 +1,12 @@
 Manifest-Version: 1.0
 Created-By: Ulrich Barnstedt
-Name: ulrichBarnstedt/libOutput/
+Name: ulrichbarnstedt/lib/output
 Sealed: true
-Specification-Title: Ulrich Barnstedt's libOutput
-Specification-Version: 1.1
+
+Specification-Title: Ulrich Barnstedt's output library
+Specification-Version: 2.0
+Specification-Vendor: Ulrich Barnstedt
+Implementation-Title: ulrichbarnstedt.lib.output
+Implementation-Version: pre2.0
+Implementation-Vendor: Ulrich Barnstedt
+Implementation-URL: https://github.com/ulrich-barnstedt/java-libOutput

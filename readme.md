@@ -3,7 +3,7 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/ulrich-barnstedt/java-libOutput)
 
 
--- `me.ulrichBarnstedt.libOutput`  
+-- `ulrichbarnstedt.lib.output`  
 Java library for diverse terminal manipulation including drawing of rudimentary UI.  
 **Not done, WIP.**
 
